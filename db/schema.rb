@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_073626) do
     t.string "name", null: false
     t.integer "type_id", null: false
     t.integer "season_id", null: false
+    t.integer "age_id", null: false
     t.integer "height_id", null: false
     t.integer "body_figure_id", null: false
     t.integer "shipping_date_id", null: false
