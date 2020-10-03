@@ -16,6 +16,10 @@ class StylesController < ApplicationController
     end
   end
 
+  def show
+    @style = Style.find(params[:id])
+  end
+
     private
 
     def style_params

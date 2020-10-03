@@ -60,6 +60,16 @@
   padding: 2vh 10vw;
 }
 
+.separated-purchase {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ea352d;
+  margin: 50px 50px;
+  padding: 2vh 10vw;
+}
+
 .or-text {
   font-size: 20px;
 }

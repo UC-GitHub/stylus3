@@ -4,37 +4,33 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= @style.name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <div class='sold-out'>
+      <%= image_tag @style.image ,class:"item-box-img" %>
+      <%# 商品が売れている場合は、sold outを表示%>
+      <%# <div class='sold-out'>
         <span>Sold Out!!</span>
-      </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      </div> %>
+      <%# //商品が売れている場合は、sold outを表示 %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ 999,999,999
+        ¥ <%= @style.total_price %>
       </span>
       <span class="item-postage">
-        (税込) 送料込み
+        一式まとめ購入（税込送料込）
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-
+    <% if supplier_signed_in? && @style.supplier_id == current_supplier.id %>
     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
-
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
+    <% elsif user_signed_in? %>
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
-
-
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
+    <% else %>
+    <% end %>
 
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
@@ -43,28 +39,96 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @style.supplier.display_name %></td>
         </tr>
         <tr>
-          <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <th class="detail-item">スタイルタイプ</th>
+          <td class="detail-value"><%= @style.type.name %></td>
         </tr>
         <tr>
-          <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <th class="detail-item">シーズン</th>
+          <td class="detail-value"><%= @style.season.name %></td>
         </tr>
         <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <th class="detail-item">対象年齢</th>
+          <td class="detail-value"><%= @style.age.name %></td>
         </tr>
         <tr>
-          <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <th class="detail-item">身長</th>
+          <td class="detail-value"><%= @style.height.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">体型</th>
+          <td class="detail-value"><%= @style.body_figure.name  %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= @style.shipping_date.name %></td>
         </tr>
+        <tr>
+          <th class="detail-item">商品詳細</th>
+          <td class="detail-value"><%= @style.description %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">トップス1価格</th>
+          <td class="detail-value">¥<%= @style.tops1_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% unless @style.tops2_price == nil %>
+        <tr>
+          <th class="detail-item">トップス2価格</th>
+          <td class="detail-value">¥<%= @style.tops2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <% unless @style.tops3_price == nil %>
+        <tr>
+          <th class="detail-item">トップス3価格</th>
+          <td class="detail-value">¥<%= @style.tops3_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <% unless @style.tops4_price == nil %>
+        <tr>
+          <th class="detail-item">トップス4価格</th>
+          <td class="detail-value">¥<%= @style.tops4_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <% unless @style.tops5_price == nil %>
+        <tr>
+          <th class="detail-item">トップス5価格</th>
+          <td class="detail-value">¥<%= @style.tops5_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <tr>
+          <th class="detail-item">ボトムス1価格</th>
+          <td class="detail-value">¥<%= @style.bottoms1_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% unless @style.bottoms2_price == nil %>
+        <tr>
+          <th class="detail-item">トップス2価格</th>
+          <td class="detail-value">¥<%= @style.bottoms2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <tr>
+          <th class="detail-item">シューズ価格</th>
+          <td class="detail-value">¥<%= @style.shoes_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% unless @style.accessories1_price == nil %>
+        <tr>
+          <th class="detail-item">その他アイテム1価格</th>
+          <td class="detail-value">¥<%= @style.acceosories1_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <% unless @style.accessories2_price == nil %>
+        <tr>
+          <th class="detail-item">その他アイテム2価格</th>
+          <td class="detail-value">¥<%= @style.acceosories2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
+        <% unless @style.accessories1_price == nil %>
+        <tr>
+          <th class="detail-item">その他アイテム3価格</th>
+          <td class="detail-value">¥<%= @style.acceosories2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+        </tr>
+        <% end %>
       </tbody>
     </table>
     <div class="option">
