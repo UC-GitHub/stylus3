@@ -1,6 +1,18 @@
 class StylesController < ApplicationController
+
+  before_action :set_style_search_query
+
   def index
     @style = Style.all.order("created_at DESC")
+    @styles = Style.all
+    # search_style
+  end
+
+  def show
+  end
+
+  def search
+    @results = @p.result.order("created_at DESC") # 検索条件にマッチした商品の情報を取得
   end
 
   def new
@@ -26,4 +38,18 @@ class StylesController < ApplicationController
         :shoes_price, :accessories1_price, :accessories2_price, :accessories3_price,
         :total_price).merge(supplier_id: current_supplier.id)
     end
+
+    def search_product
+      @p = Style.ransack(params[:q])  # 検索オブジェクトを生成
+    end
+
+    # def search_style
+    #   @type          = Type.where.not(id: 1)  # 検索オブジェクトを生成
+    #   @season        = Season.where.not(id: 1)
+    #   @age           = Age.where.not(id: 1)
+    #   @height        = Height.where.not(id: 1)
+    #   @body_figure   = BodyFigure.where.not(id: 1)
+    #   @shipping_date = ShippingDate.where.not(id: 1)
+    # end
+
 end

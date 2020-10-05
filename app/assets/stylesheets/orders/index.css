@@ -28,6 +28,13 @@
   justify-content: center;
 }
 
+.item-img {
+  margin-right: 20px;
+  height: 150px;
+  width: 250px;
+  object-fit: cover;
+}
+
 .buy-item-img {
   margin-right: 20px;
   height: 130px;
