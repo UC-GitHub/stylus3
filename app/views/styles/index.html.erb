@@ -122,8 +122,42 @@
 
   <%# 商品一覧 %>
   <div class='item-contents'>
-    <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <h2 class='title'>スタイル一覧</h2>
+    <%= link_to '投稿スタイル', "#", class: "subtitle" %>
+
+    <h1>商品検索</h1>
+    <%= search_form_for @p, url: search_path do |f| %>
+      <%= f.label :type_eq, 'スタイルタイプ' %>
+      <%= f.collection_select :type_id_eq, Type.where.not(id: 1), :id, :name,  include_blank: '指定なし' %>
+      <%= f.label :type_eq, 'シーズン' %>
+      <%= f.collection_select :season_id_eq, Season.where.not(id: 1), :id, :name,  include_blank: '指定なし' %>
+      <%= f.label :type_eq, '対象年齢' %>
+      <%= f.collection_select :age_id_eq, Age.where.not(id: 1), :id, :name,  include_blank: '指定なし' %>
+      <br>
+      <%= f.label :type_eq, '身長' %>
+      <%= f.collection_select :height_id_eq, Height.where.not(id: 1), :id, :name,  include_blank: '指定なし' %>
+      <%= f.label :type_eq, '体型' %>
+      <%= f.collection_select :body_figure_id_eq, BodyFigure.where.not(id: 1), :id, :name,  include_blank: '指定なし' %>
+      <%= f.label :type_eq, '発送日' %>
+      <%= f.collection_select :shipping_date_id_eq, ShippingDate.where.not(id: 1), :id, :name,  include_blank: '指定なし' %>
+      <br>
+      <%= f.radio_button :total_price_lteq, '' %>
+      指定なし
+      <%= f.radio_button :total_price_lteq, '10000' %>
+      10000円以下
+      <%= f.radio_button :total_price_lteq, '20000' %>
+      20000円以下
+      <br>
+      <%= f.radio_button :total_price_lteq, '30000' %>
+      30000円以下
+      <%= f.radio_button :total_price_lteq, '40000' %>
+      40000円以下
+      <%= f.radio_button :total_price_lteq, '50000' %>
+      50000円以下
+      <br>
+      <%= f.submit '検索' %>
+    <% end %>
+
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
@@ -144,15 +178,15 @@
             <%= style.name %>
           </h3>
           <div class='item-price'>
-            <span><%= style.total_price %>円<br>(税込み)</span>
+            <span>¥<%= style.total_price %><br>(税込み)</span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
             </div>
           </div>
         </div>
-        <% end %>
       </li>
+      <% end %>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
     </ul>

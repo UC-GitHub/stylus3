@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
                                                       :display_name, :company_name, :family_name_in_charge, :first_name_in_charge, :kana_family_name_in_charge, :kana_first_name_in_charge, :mobile_number])
   end
 
+  def set_style_search_query
+    @p = Style.ransack(params[:q])
+    @styles = @p.result(distinct: true)
+  end
+
 end

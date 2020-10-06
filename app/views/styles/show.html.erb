@@ -8,29 +8,35 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @style.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示%>
+      <%# 商品が売れている場合は、sold outを表示しましょう %>
       <%# <div class='sold-out'>
         <span>Sold Out!!</span>
       </div> %>
-      <%# //商品が売れている場合は、sold outを表示 %>
+      <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%= @style.total_price %>
+        ¥<%= @style.total_price %>
       </span>
       <span class="item-postage">
         一式まとめ購入（税込送料込）
       </span>
     </div>
 
+
+    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <% if supplier_signed_in? && @style.supplier_id == current_supplier.id %>
     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
     <% elsif user_signed_in? %>
+    <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
-    <% else %>
+    <%# //商品が売れていない場合はこちらを表示しましょう %>
+    <% else%>
     <% end %>
+
+    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
@@ -55,7 +61,7 @@
         </tr>
         <tr>
           <th class="detail-item">身長</th>
-          <td class="detail-value"><%= @style.height.name %></td>
+          <td class="detail-value"><%= @style.height.name  %></td>
         </tr>
         <tr>
           <th class="detail-item">体型</th>
@@ -67,7 +73,7 @@
         </tr>
         <tr>
           <th class="detail-item">商品詳細</th>
-          <td class="detail-value"><%= @style.description %></td>
+          <td class="detail-value"><%=safe_join(@style.description.split("\n"),tag(:br))%></td>
         </tr>
         <tr>
           <th class="detail-item">トップス1価格</th>
@@ -114,19 +120,19 @@
         <% unless @style.accessories1_price == nil %>
         <tr>
           <th class="detail-item">その他アイテム1価格</th>
-          <td class="detail-value">¥<%= @style.acceosories1_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+          <td class="detail-value">¥<%= @style.accessories1_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
         </tr>
         <% end %>
         <% unless @style.accessories2_price == nil %>
         <tr>
           <th class="detail-item">その他アイテム2価格</th>
-          <td class="detail-value">¥<%= @style.acceosories2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+          <td class="detail-value">¥<%= @style.accessories2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
         </tr>
         <% end %>
-        <% unless @style.accessories1_price == nil %>
+        <% unless @style.accessories3_price == nil %>
         <tr>
           <th class="detail-item">その他アイテム3価格</th>
-          <td class="detail-value">¥<%= @style.acceosories2_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
+          <td class="detail-value">¥<%= @style.accessories3_price %><%= link_to '単品購入する', "#" ,class:"separated-purchase"%></td>
         </tr>
         <% end %>
       </tbody>
