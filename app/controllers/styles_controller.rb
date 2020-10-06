@@ -9,6 +9,7 @@ class StylesController < ApplicationController
   end
 
   def show
+    @style = Style.find(params[:id])
   end
 
   def search
