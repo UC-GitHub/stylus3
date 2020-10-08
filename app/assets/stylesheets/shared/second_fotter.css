@@ -20,7 +20,10 @@
 }
 
 .second-fotter-logo {
-  width: 185px;
-  height: 49px;
+  width: 210px;
+  height: 95px;
   margin: 0 auto;
+  border
+  border-radius: 5%;
+  border: 3px dashed #000;
 }
