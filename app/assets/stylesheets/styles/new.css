@@ -2,7 +2,10 @@
 
 
 .items-sell-contents {
-  background-color: #f5f5f5;
+  background-color: white;
+	background-image: repeating-linear-gradient(45deg,
+	lightgray,	gray 3px,
+	transparent 0, transparent 6px);
   font-family: "Source Sans Pro", Helvetica, Arial, "æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“", "YuGothic", "ãƒ¡ã‚¤ãƒªã‚ª", "Meiryo", sans-serif;
   font-size: 14px;
   display: flex;
@@ -13,7 +16,7 @@
 
 .items-sell-header {
   padding: 5vh 0;
-  text-align: center;
+  text-align: center; 
 }
 
 .items-sell-main {

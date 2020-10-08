@@ -16,8 +16,11 @@
 }
 
 .furima-icon {
-  width: 15vw;
-  margin-right: 7vw;
+  width: 210px;
+  height: 95px;
+  margin: 0 auto;
+  border
+  border-radius: 5%;
 }
 
 .search-form {
